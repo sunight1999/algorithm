@@ -18,19 +18,19 @@ for _ in range(N):
 distance = [0] * (N + 1)
 visited = [False] * (N + 1)
 
-def BFS(v):
+def DFS(v):
     queue = deque()
     queue.append(v)
     visited[v] = True
     while queue:
-        now_Node = queue.popleft()
+        now_Node = queue.pop()
         for i in A[now_Node]:
             if not visited[i[0]]:
                 visited[i[0]] = True
                 queue.append(i[0])
                 distance[i[0]] = distance[now_Node] + i[1]
 
-BFS(1)
+DFS(1)
 Max = 1
 for i in range(2, N + 1):
     if distance[Max] < distance[i]:
@@ -38,6 +38,6 @@ for i in range(2, N + 1):
 
 distance = [0] * (N + 1)
 visited = [False] * (N + 1)
-BFS(Max)
+DFS(Max)
 distance.sort()
 print(distance[N])
